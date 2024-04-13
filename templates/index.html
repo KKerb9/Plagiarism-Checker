@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="KKerb9_">
+    {% comment %} <link rel="stylesheet" href="CSS/main.css"> {% endcomment %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
+    <title>Plagiarism Checker</title>
+</head>
+<body>
+    <header>    
+        <p>Plagiarism Checker Online</p>
+    </header>
+    <hr>
+
+    <main class="main-index">
+        <div class="index-grid">
+            <div class="input">
+                <textarea class="textarea-fixed-sz" placeholder="Введите ваш первый текст"></textarea>
+                <input type="file"><br><br>
+            </div>
+            <div class="output">
+                <textarea class="textarea-fixed-sz" placeholder="Введите ваш второй текст"></textarea>
+                <input type="file"><br><br>
+            </div>
+            <!-- <button class="button-upload1" type="button">Прикрепить файл 1</button>
+            <button class="button-upload2" type="button">Прикрепить файл 2</button>             -->
+            <button class="button-send" type="submit">Отправить</button>
+            
+            <p class="settings-p">Настройки чекера:</p><br>
+            <!-- <ol class="settings-pills">
+                <form class="settings-items">
+                    <select class="settings-select">
+                        <option></option>
+                    </select>
+                </form>
+            </ol> -->
+        </div>
+    </main>
+    <hr>
+
+    <footer>
+        <p class="text-center footer">© 2024 GDT, Inc.</p>
+        <p class="text-center footer small">KKerb9_</p>
+    </footer>
+</body>
+</html>
