@@ -1,77 +1,400 @@
-header {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 24px;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-}
-
-hr {
-    margin: 30px;
-    border-top: 8px groove rgba(0, 0, 0, 0.623);
-}
-
-.text-center {
-    text-align: center;
-}
-
-.small {
-    font-size: 12px;
-}
-
-p.footer {
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-
-/*отступ по бокам 50px*/
-.index-grid {
-    display: grid;
-    grid-template-columns: 10% 500px 50px 500px 50px 200px;
-    grid-template-rows: 30px 50px 10px 50px 10px 50px 30px 235px;
-    grid-gap: 10px;
+body {
+    background-color: rgb(0, 0, 0);
+    padding: 0;
     margin: 0;
 }
 
-.input {
+header p {
+    text-align: center;
+    margin-top: 25px;
+    color: rgb(211, 253, 122);
+    /* color: azure; */
+    filter: drop-shadow(3px 3px 10px rgb(103, 198, 8));
+}
+
+.main {
+    padding: 0;
+    margin: 0;
+    width: 100vw !important;
+    height: 80vh !important;
+    /* background-color: rgb(190, 25, 25); */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 4fr 3fr 4fr 1fr;
+    gap: 0;
+    height: 100% !important;
+}
+
+.col1 {
     grid-column: 2;
-    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 4%;
+    padding-left: 4%;
+    background-color: rgb(32, 31, 31);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
-.output {
+.col3 {
     grid-column: 4;
-    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 4%;
+    padding-right: 4%;
+    background-color: rgb(32, 31, 31);
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-sizing: border-box;
 }
 
-.textarea-fixed-sz {
-    width: 500px;
-    height: 500px;
-    max-width: 100%;
-    max-height: 500px;
+.input {
+    /* filter: drop-shadow(2px 2px 10px rgb(103, 198, 8)); */
+    display: flex;
+    flex-direction: column;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 90% !important;
+    background-color: rgb(24, 24, 24);
+    border: 4px solid black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-sizing: border-box;
 }
 
-.form-index {
-    grid-column: 6;
+.input-title {
+    color: rgb(211, 253, 122);
+    filter: drop-shadow(2px 2px 10px rgb(103, 198, 8));
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    box-sizing: border-box;
 }
 
-.button-send {
-    grid-column: 6;
-    grid-row: 2;
-    width: 150px;
-    height: 50px;
+.separator {
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+.input-textarea {
+    padding: 2%;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: rgb(46, 45, 45);
+    /* background-color: rgb(73, 70, 70); */
+    outline-color: rgb(211, 253, 122);
+    outline-style: none;
+    flex-grow: 1;
+    resize: none;
+    border: none;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    box-sizing: border-box;
+}
+
+.input-file {
+    flex-grow: 1;
+    margin-top: 4%;
+    margin-bottom: 0;
+    box-sizing: border-box;
+}
+
+.custom-file-input {
+    display: none;
+}
+
+.custom-file-label {
+    /* background-color: rgb(211, 253, 122); Цвет фона кнопки */
+    background-color: rgb(55, 54, 54);
+    color: rgb(211, 253, 122); /* Цвет текста кнопки */
+    /* text-shadow: 2px 2px 10px rgb(103, 198, 8); */
+    text-shadow: 2px 2px 10px rgb(0, 0, 0);
+    /* filter: drop-shadow(2px 2px 10px rgb(103, 198, 8)); */
+    
+    font-family: "Platypi", serif;
+    font-size: 16px;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    padding: 10px 20px;
+    border: 3px solid black;
+    border-radius: 10px;
+    cursor: pointer; /* Устанавливаем курсор указывающий на возможность клика */
+}
+
+.custom-file-label:hover {
+    border: 4px solid black;
+    color: black;
+    background-color: rgb(211, 253, 122); /* Цвет фона кнопки при наведении */
+}
+
+.file-selected {
+    color: white;
+    /* text-shadow: 2px 2px 10px rgb(211, 253, 122); */
+    font-family: "Platypi", serif;
     font-size: 14px;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    padding: 0px 10px;
+    box-sizing: border-box;
 }
 
-.settngs-pills {
-    grid-column: 6;
-    grid-row: 4;
+.file-name {
+    margin-right: 10px;
+    color: white;
+    /* text-shadow: 2px 2px 10px rgb(211, 253, 122); */
+    font-family: "Platypi", serif;
+    font-size: 14px;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    padding: 0px 10px;
+    box-sizing: border-box;
 }
 
-.settings-p {
-    grid-column: 6;
-    grid-row: 4;
+.row3 {
+    grid-row: 3;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-.settings-items {
+.row3-col1 {
+    grid-column: 1;
+    width: 100%;
+    height: 100%;
+    /* display: grid;
+    place-items: center; */
+}
+
+.submit-button {
+    margin-top: 6%;
+    margin-left: 15%;
+    width: 80%;
+    height: auto;
+    box-sizing: border-box;
+    background-color: rgb(172, 209, 92);
+    color: black;
+    font-family: "Platypi", serif;
+    font-size: 20px;
+    font-optical-sizing: auto;
+    font-weight: 1000;
+    font-style: normal;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: rgb(161, 212, 51);
+}
+
+.result-button {
+    margin-top: 6%;
+    margin-right: 15%;
+    width: 80%;
+    height: auto;
+    box-sizing: border-box;
+    background-color: rgb(172, 209, 92);
+    color: black;
+    font-family: "Platypi", serif;
+    font-size: 20px;
+    font-optical-sizing: auto;
+    font-weight: 1000;
+    font-style: normal;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.result-button:hover {
+    background-color: rgb(161, 212, 51);
+}
+
+.row3-col2 {
+    grid-column: 2;
+    width: 100%;
+    height: 100%;
+    /* display: grid;
+    place-items: center; */
+}
+
+.col2 {
+    grid-column: 3;
+    width: 100%;
+    height: 100%;
+    padding-top: 5%;
+    padding-right: 5%;
+    padding-left: 5%;
+    background-color: rgb(32, 31, 31);
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 9fr 17fr 3fr;
+}
+
+.row1 {
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.describtion {
+    flex-grow: 1;
+    /* padding: 4%; */
+    padding-left: 4%;
+    padding-right: 4%;
+    margin-bottom: 4%;
+    border: 4px solid black;
+    background-color: rgb(46, 45, 45);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.describtion-text {
+    text-align: center;
+    margin-top: 5%;
+    font-size: 25px;
+    /* color: #ffffff; */
+    color: rgb(211, 253, 122);
+    /* text-shadow: 3px 3px 10px rgb(103, 198, 8); */
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.under-describtion-text {
+    text-align: center;
+    margin-top: 2%;
+    font-size: 20px;
+    /* color: #ffffff; */
+    color: rgb(211, 253, 122);
+    /* text-shadow: 3px 3px 10px rgb(103, 198, 8); */
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    /* font-style: italic; */
+}
+
+.link {
+    text-decoration: 1px underline;
+    color: rgb(75, 72, 255);
+    /* color: rgb(211, 253, 122); */
+}
+
+.describtion-text-small {
+    text-align: center;
+    margin-top: 8%;
+    font-size: 20px;
+    /* color: #ffffff; */
+    color: rgb(211, 253, 122);
+    /* text-shadow: 3px 3px 10px rgb(103, 198, 8); */
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.row2 {
+    grid-row: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings {
+    flex-grow: 1;
+    border: 4px solid black;
+    border-radius: 10px;
+    margin-top: 0;
+    box-sizing: border-box;
+    background-color: rgb(24, 24, 24);
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-title {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    color: rgb(211, 253, 122);
+    text-shadow: 3px 3px 10px rgb(103, 198, 8);
+    text-align: center;
+}
+
+.settings-block {
+    flex-grow: 1;
+    background-color: rgb(46, 45, 45);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.settings-block-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    list-style-type: none;
+}
+
+.settings-block-grid li::before {
+    content: "•";
+    color: rgb(211, 253, 122);
+    margin-right: 5px;
+    font-size: 25px;
+}
+
+.cost-option1 {
+    grid-row: 1;
+}
+
+.cost-option2 {
+    grid-row: 2;
+}
+
+.cost-option3 {
+    grid-row: 3;
+}
+
+.option-title {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 20px;
+    color: rgb(211, 253, 122);
+}
+
+.settings-input {
+    margin-left: 4%;
+    margin-top: 3%;
+    background-color: rgb(46, 45, 45);
+    /* color: #ffffff; */
+    color: rgb(211, 253, 122);
+    border-radius: 8px;
+    padding: 10px;
 
 }
+
+.settings-input:hover {
+    border-color: black;
+    /* border-color: rgb(211, 253, 122); */
+}
+
+footer {
+    text-align: center;
+    /* color: rgb(211, 253, 122); */
+    color: rgb(71, 69, 69);
+} 
+
+
