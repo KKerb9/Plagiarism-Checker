@@ -3,45 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="KKerb9_">
-    {% comment %} <link rel="stylesheet" href="CSS/main.css"> {% endcomment %}
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
-    <title>Plagiarism Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/fonts.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <title>Plagiarism Checker Online</title>
 </head>
 <body>
-    <header>    
-        <p>Plagiarism Checker Online</p>
+    <header>
+        <p class="ubuntu-medium">Plagiarism Checker Online</p>
     </header>
-    <hr>
 
-    <main class="main-index">
-        <div class="index-grid">
-            <div class="input">
-                <textarea class="textarea-fixed-sz" placeholder="Введите ваш первый текст"></textarea>
-                <input type="file"><br><br>
+    <main class="main">
+        <div class="grid">
+            <div class="col1">
+                <div class="input">
+                    <div class="input-title">
+                        <div class="platypi">Enter your first text:</div>
+                    </div>
+                    <div class="separator"></div>
+                    <textarea class="input-textarea" maxlength="1000000"></textarea>
+                </div>
+                <div class="input-file">
+                    <input type="file" id="fileInput" class="custom-file-input" />
+                    <label for="fileInput" class="custom-file-label">Select a file</label>
+                    <span class="file-name" id="fileLabel">No file selected</span>
+                    <script>
+                        const fileInput = document.getElementById('fileInput');
+                        const fileLabel = document.getElementById('fileLabel');
+
+                        fileInput.addEventListener('change', function() {
+                            if (fileInput.files.length > 0) {
+                                fileLabel.textContent = fileInput.files[0].name;
+                            } else {
+                                fileLabel.textContent = 'No file selected';
+                            }
+                        });
+                    </script>
+                </div>
             </div>
-            <div class="output">
-                <textarea class="textarea-fixed-sz" placeholder="Введите ваш второй текст"></textarea>
-                <input type="file"><br><br>
+            <div class="col2">
+                <div class="row1">
+                    <div>
+                        <div class="describtion-text">This is a web application</div>
+                        <div class="under-describtion-text">that calculates the editorial distance</div>
+                        <div class="under-describtion-text">(<a href="https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D1%81%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D0%B5_%D0%9B%D0%B5%D0%B2%D0%B5%D0%BD%D1%88%D1%82%D0%B5%D0%B9%D0%BD%D0%B0" class="link">Levenshtein distance</a>)</div>
+                        <div class="under-describtion-text">between two texts.</div>
+                        <div class="describtion-text-small">Check our <a href="https://github.com/KKerb9/Plagiarism-Checker" class="link">GitHub</a> whith open code</div>
+                    </div>
+                </div>
+                <div class="row2">
+                    <div class="settings">
+                        <div class="settings-title">
+                            <div class="platypi">Settings:</div>
+                        </div>
+                        <div class="separator"></div>
+                        <div class="settings-block">
+                            <ul class="settings-block-grid">
+                                <li class="cost-option1">
+                                    <label class="option-title">Swap cost</label><br>
+                                    <input id="swapCost" type="number" value="1" class="settings-input">
+                                </li>
+                                <li class="cost-option2">
+                                    <label class="option-title">Delete cost</label><br>
+                                    <input id="delCost" type="number" value="1" class="settings-input">
+                                </li>
+                                <li class="cost-option3">
+                                    <label class="option-title">Insert cost</label><br>
+                                    <input id="addCost" type="number" value="1" class="settings-input">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row3">
+                    <div class="row3-col1">
+                        <button id="submit" class="submit-button">Check</button>
+                    </div>
+                    <div class="row3-col2">
+                        <button id="result" class="result-button">Results</button>
+                    </div>
+                </div>
             </div>
-            <!-- <button class="button-upload1" type="button">Прикрепить файл 1</button>
-            <button class="button-upload2" type="button">Прикрепить файл 2</button>             -->
-            <button class="button-send" type="submit">Отправить</button>
-            
-            <p class="settings-p">Настройки чекера:</p><br>
-            <!-- <ol class="settings-pills">
-                <form class="settings-items">
-                    <select class="settings-select">
-                        <option></option>
-                    </select>
-                </form>
-            </ol> -->
+            <div class="col3">
+                <div class="input">
+                    <div class="input-title">
+                        <div class="platypi">Enter your second text:</div>
+                    </div>
+                    <div class="separator"></div>
+                    <textarea class="input-textarea" maxlength="1000000"></textarea>
+                </div>
+                <div class="input-file">
+                    <input type="file" id="fileInput2" class="custom-file-input" />
+                    <label for="fileInput2" class="custom-file-label">Select a file</label>
+                    <span class="file-name" id="fileLabel2">No file selected</span>
+                    <script>
+                        const fileInput2 = document.getElementById('fileInput2');
+                        const fileLabel2 = document.getElementById('fileLabel2');
+
+                        fileInput2.addEventListener('change', function() {
+                            if (fileInput2.files.length > 0) {
+                                fileLabel2.textContent = fileInput2.files[0].name;
+                            } else {
+                                fileLabel2.textContent = 'No file selected';
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
         </div>
     </main>
-    <hr>
 
-    <footer>
-        <p class="text-center footer">© 2024 GDT, Inc.</p>
-        <p class="text-center footer small">KKerb9_</p>
+    <footer class="ubuntu-light">
+        <p class="text-center footer">© 2024 GDT, Inc. KKerb9_</p>
     </footer>
 </body>
 </html>
