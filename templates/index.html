@@ -14,7 +14,7 @@
     <header>
         <p class="ubuntu-medium">Plagiarism Checker Online</p>
     </header>
-
+    
     <main class="main">
         <div class="grid">
             <div class="col1">
@@ -23,7 +23,7 @@
                         <div class="platypi">Enter your first text:</div>
                     </div>
                     <div class="separator"></div>
-                    <textarea class="input-textarea" maxlength="1000000"></textarea>
+                    <textarea id="textarea-1" class="input-textarea" maxlength="1000000"></textarea>
                 </div>
                 <div class="input-file">
                     <input type="file" id="fileInput1" class="custom-file-input" />
@@ -66,7 +66,12 @@
                     </div>
                 </div>
                 <div class="row3">
-                    <button id="check" class="check-button">Check</button>
+                    <div class="row3-col1">
+                        <button id="check" class="check-button">Check</button>
+                    </div>
+                    <div class="row3-col2">
+                        <button id="result" class="result-button">Result</button>
+                    </div>
                 </div>
             </div>
             <div class="col3">
@@ -75,7 +80,7 @@
                         <div class="platypi">Enter your second text:</div>
                     </div>
                     <div class="separator"></div>
-                    <textarea class="input-textarea" maxlength="1000000"></textarea>
+                    <textarea id="textarea-2" class="input-textarea" maxlength="1000000"></textarea>
                 </div>
                 <div class="input-file">
                     <input type="file" id="fileInput2" class="custom-file-input" />
