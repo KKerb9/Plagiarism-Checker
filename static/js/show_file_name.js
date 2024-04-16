@@ -1,8 +1,6 @@
 const fileInput1 = document.getElementById('fileInput1');
 const fileLabel1 = document.getElementById('fileLabel1');
 
-console.log(111);
-
 fileInput1.addEventListener('change', function() {
     if (fileInput1.files.length > 0) {
         fileLabel1.textContent = fileInput1.files[0].name;
