@@ -1,4 +1,5 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, jsonify
+
 
 app = Flask(__name__)
 
@@ -8,12 +9,25 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route('/results')
+def results():
+    return render_template("results.html")
 
-@app.route('/get', methods=['POST'])
-def get():
-    data = request.json
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    get_data = request.json
     # распаковка JSON
     # дальнейшие действия (бекенд)
+    return jsonify({'result': 'aboba'})
+
+
+@app.route('/results', methods=['GET'])
+def get_res():
+    # резы обработки
+    # делаем json
+    data = jsonify({'results': ['result1', 'result2', 'result3']})
+    return data
 
 
 if __name__ == "__main__":
