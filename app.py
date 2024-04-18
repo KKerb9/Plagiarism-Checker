@@ -8,13 +8,13 @@ app = Flask(__name__)
 
 
 @app.route('/')
-@app.route('/home')
+@app.route('/home/')
 def index():
     session_auth()
     return render_template("index.html")
 
-
-@app.route('/results')
+ 
+@app.route('/results/')
 def results():
     session_auth()
     return render_template("results.html")
@@ -25,14 +25,12 @@ def upload():
     session_auth()
     app.CURR_QUERIES_CNT += 1
     get_data = request.json
+    # print(get_data['textarea-1'], get_data['textarea-2'], get_data['file-input-1'], get_data['file-input-2'], end='\n')
     # распаковка JSON
     # дальнейшие действия (бекенд)
-    # на примере сравнения слов: берём два слова, ищем их пару в дб. Если не находим
-    # записываем их в input_file и запускаем чекер для слов.
-    # Потом на основе этих данных запускаем чекер уровнем выше (как?)
-    input_file = ''
-    output_file = ''
-    os.system(f'checker/checker_executable.o < {input_file} > {output_file}')
+#     input_file = ''
+#     output_file = ''
+#     os.system(f'checker/checker_executable.o < {input_file} > {output_file}')
     return jsonify({'result': 'aboba'})
 
 
@@ -63,7 +61,7 @@ def auth_test():
 
 
 if __name__ == "__main__":
-    os.system('g++ -std=c++23 -O2 checker/main.cpp -o checker/checker_executable.o')
+#     os.system('g++ -std=c++23 -O2 checker/main.cpp -o checker/checker_executable.o')
     app.secret_key = os.urandom(24)
     app.CURR_SESSION_CNT = 0
     app.CURR_QUERIES_CNT = 0
