@@ -1,4 +1,4 @@
-console.log('aboba');
+console.log('main js is running');
 
 $(document).ready(function() {
     $('#check').click(function() {
@@ -16,29 +16,40 @@ $(document).ready(function() {
         } else {
             fileInput2 = "empty";
         }
-
         if ((textareaVal1 == '' && fileInput1 == "empty") || (textareaVal2 == '' && fileInput2 == "empty")) {
             alert("You did't provide one of the files.");
         } else {
-            var res = confirm("Сonfirm the action");
-            if (res) { 
-                $('#textarea-1').val('');
-                $('#textarea-2').val('');
-                $('#fileLabel1')[0].textContent = 'No file selected';
-                $('#fileLabel2')[0].textContent = 'No file selected';
+            if ((textareaVal1 == '' && (fileInput1 == "empty" || !fileInput1.type || !fileInput1.type.match('text.*'))) || (textareaVal2 == '' && (fileInput2 == "empty" || !fileInput2.type || !fileInput2.type.match('text.*')))) {
+                alert("Please select a text file");
+            } else {
+                if ((fileInput1 != "empty" && textareaVal1 != '') || (fileInput2 != "empty" && textareaVal2 != '')) {
+                    alert("Please, select only one input for text");
+                } else {
+                    var res = confirm("Сonfirm the action");
+                    if (res) { 
+                        $('#textarea-1').val('');
+                        $('#textarea-2').val('');
+                        $('#fileLabel1')[0].textContent = 'No file selected';
+                        $('#fileLabel2')[0].textContent = 'No file selected';
+                        // var text1, text2;
+                        // var post_data = {
+                        //     "text1": 
+                        // }
 
-                $.ajax({
-                    url: '/upload',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({'textarea-1': textareaVal1, 'textarea-2': textareaVal2, 'file-input-1': fileInput1, 'file-input-2': fileInput2}),
-                    success: function(response) {
-                        console.log('Данные успешно отправлены на сервер:', response);
-                    },
-                    error: function(error) {
-                        console.error('Произошла ошибка при отправке данных:', error);
+                        $.ajax({
+                            url: '/upload',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({'textarea-1': textareaVal1, 'textarea-2': textareaVal2, 'file-input-1': fileInput1, 'file-input-2': fileInput2}),
+                            success: function(response) {
+                                console.log('Данные успешно отправлены на сервер:', response);
+                            },
+                            error: function(error) {
+                                console.error('Произошла ошибка при отправке данных:', error);
+                            }
+                        });
                     }
-                });
+                }
             }
         }
     });
