@@ -6,3 +6,8 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+/.vscode/
+/.venv/
+/uploads/
+/results/
+checker/checker_executable.o
