@@ -5,11 +5,11 @@ app = Flask(__name__)
 
 
 @app.route('/')
-@app.route('/home')
+@app.route('/home/')
 def index():
     return render_template("index.html")
 
-@app.route('/results')
+@app.route('/results/')
 def results():
     return render_template("results.html")
 
@@ -17,6 +17,7 @@ def results():
 @app.route('/upload', methods=['POST'])
 def upload():
     get_data = request.json
+    # print(get_data['textarea-1'], get_data['textarea-2'], get_data['file-input-1'], get_data['file-input-2'], end='\n')
     # распаковка JSON
     # дальнейшие действия (бекенд)
     return jsonify({'result': 'aboba'})
