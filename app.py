@@ -3,6 +3,7 @@ from flask import session
 import os
 import sqlite3
 from datetime import timedelta
+from checker.check import calculate_levenshtein_distance
 
 app = Flask(__name__)
 
@@ -31,6 +32,8 @@ def upload():
 #     input_file = ''
 #     output_file = ''
 #     os.system(f'checker/checker_executable.o < {input_file} > {output_file}')
+
+    calculate_levenshtein_distance(request.get_json())
     return jsonify({'result': 'aboba', 'text1': get_data['text1'], 'text2': get_data['text2']})
 
 
@@ -66,4 +69,5 @@ if __name__ == "__main__":
     app.CURR_SESSION_CNT = 0
     app.CURR_QUERIES_CNT = 0
     app.permanent_session_lifetime = timedelta(days=1)
+    os.system('g++ -std=c++17 -O2 checker/levenshtein_distance.cpp -o checker/levenshtein_distance')
     app.run(debug=True)
