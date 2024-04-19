@@ -340,7 +340,7 @@ header p {
     border-bottom-right-radius: 7px;
 }
 
-.settings-block-grid {
+.settings-block-grid {  
     width: 100%;
     height: 100%;
     display: grid;
@@ -349,6 +349,8 @@ header p {
 }
 
 .settings-block-grid li::before {
+    width: 100%;
+    height: 100%;
     content: "•";
     color: rgb(211, 253, 122);
     margin-right: 5px;
@@ -357,14 +359,20 @@ header p {
 
 .cost-option1 {
     grid-row: 1;
+    width: 100%;
+    height: 100%;
 }
 
 .cost-option2 {
     grid-row: 2;
+    width: 100%;
+    height: 100%;
 }
 
 .cost-option3 {
     grid-row: 3;
+    width: 100%;
+    height: 100%;
 }
 
 .option-title {
@@ -383,7 +391,8 @@ header p {
     color: rgb(211, 253, 122);
     border-radius: 8px;
     padding: 10px;
-
+    width: 60%;
+    height: auto;
 }
 
 .settings-input:hover {
