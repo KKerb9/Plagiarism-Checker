@@ -31,7 +31,7 @@ def upload():
 #     input_file = ''
 #     output_file = ''
 #     os.system(f'checker/checker_executable.o < {input_file} > {output_file}')
-    return jsonify({'result': 'aboba'})
+    return jsonify({'result': 'aboba', 'text1': get_data['text1'], 'text2': get_data['text2']})
 
 
 @app.route('/results', methods=['GET'])
