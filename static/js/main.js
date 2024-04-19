@@ -1,5 +1,3 @@
-console.log('main js is running');
-
 function readFileAsText(file) {
     return new Promise(function(resolve, reject) {
         var reader = new FileReader();
@@ -15,6 +13,10 @@ function readFileAsText(file) {
 
 $(document).ready(function() {
     $('#check').click(async function() {
+        var swapCost = ($('#swapCost').val() != '') ? $('#swapCost').val() : '1', delCost = ($('#delCost').val() != '') ? $('#delCost').val() : '1', addCost = ($('#addCost').val() != '') ? $('#addCost').val() : '1';
+        if (swapCost )
+        console.log(swapCost, delCost, addCost);
+
         var textareaVal1 = $('#textarea-1').val();
         var textareaVal2 = $('#textarea-2').val();
 
@@ -66,7 +68,7 @@ $(document).ready(function() {
                             url: '/upload',
                             type: 'POST',
                             contentType: 'application/json',
-                            data: JSON.stringify({'text1': text1, 'text2' : text2}),
+                            data: JSON.stringify({'text1': text1, 'text2': text2, 'swap-cost': swapCost, 'delete-cost': delCost, 'insert-cost': addCost}),
                             // data: JSON.stringify({'textarea-1': textareaVal1, 'textarea-2': textareaVal2, 'file-input-1': fileInput1, 'file-input-2': fileInput2}),
                             success: function(response) {
                                 console.log('Данные успешно отправлены на сервер:', response);
