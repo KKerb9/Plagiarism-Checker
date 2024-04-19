@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS dist;
+
+CREATE TABLE dist (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text1 TEXT NOT NULL,
+    text2 TEXT NOT NULL,
+    distance_0 INTEGER NOT NULL,
+    distance_1 INTEGER NOT NULL,
+    distance_2 INTEGER NOT NULL,
+    distance_3 INTEGER NOT NULL
+);

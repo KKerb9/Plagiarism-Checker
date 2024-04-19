@@ -3,6 +3,8 @@
 #include <map>
 #include <vector>
 #include <set>
+#include <sqlite3.h>
+#include <string.h>
 
 using namespace std;
 using ll = long long;
@@ -86,6 +88,33 @@ vector<string> input(const char *__restrict__ name) {
     return text;
 }
 
+char *err_msg = 0;
+vector<ll> dist;
+bool present;
+
+int callback(void *notUsed, int colCount, char **columns, char **colNames) {
+    if(colCount == 0) {
+        present = false;
+        return 0;
+    }
+    present = true;
+    for(int i = 3; i < 7; i++) {
+        dist[i - 3] = *columns[i] - '0';
+    }
+
+    return 0;
+}
+
+void insert(sqlite3 *db, string text1, string text2, vector<ll> dist) {
+    string _sql_insert = "INSERT INTO dist (text1, text2, distance_0, distance_1, distance_2, distance_3) VALUES (\"" + text1 + "\", \"" + text2 + "\"";
+    for(auto el : dist) {
+        _sql_insert += ", " + to_string(el);
+    }
+    _sql_insert += ");";
+    char *sql_insert = strdup(_sql_insert.c_str());
+    int rc = sqlite3_exec(db, sql_insert, 0, 0, &err_msg);
+}
+
 int main()
 {
     freopen("checker/result.txt", "w", stdout);
@@ -95,15 +124,46 @@ int main()
     cin >> weight['D'];
     cin >> weight['I'];
     fclose(stdin);
+    cin.clear();
     
     // 40 000 -> курсовая за (4e4)^2 = 16e8 ~ 1.6 - 16 сек
 
     vector<string> text1 = input("checker/text1.txt");
     vector<string> text2 = input("checker/text2.txt");
+    
+    dist.resize(4);
+    
+    sqlite3 *db;
+    int connected = sqlite3_open("checker/levenshtein_distance_database.db", &db);
+    connected = (connected == SQLITE_OK); // connected = true if db connected successfully
 
-    for(int i = 3; i >= 0; i--) {
-        cout << levenshtein_distance(text1, text2, i) << "\n";
+    string text1_db = text1[0];
+    string text2_db = text2[0];
+
+    string _sql_select = "SELECT * FROM dist WHERE text1 = \"" + text1[0] + "\" AND text2 = \"" + text2[0] + "\"";
+    char *sql_select = strdup(_sql_select.c_str());
+
+    if(connected) {
+        int rc = sqlite3_exec(db, sql_select, callback, 0, &err_msg);
     }
+    else {
+        present = false;
+    }
+    
+    if(!present) {
+        for(int i = 3; i >= 0; i--) {
+            dist[i] = levenshtein_distance(text1, text2, i);
+        }
+        if(connected) {
+            insert(db, text1_db, text2_db, dist);
+        }
+    }
+
+    for(auto el : dist) {
+        cout << el << "\n";
+    }
+
+    sqlite3_close(db);
 
     return 0;
 }

@@ -1,4 +1,3 @@
-# import lvd
 import os
 
 def calculate_levenshtein_distance(input):
@@ -12,5 +11,5 @@ def calculate_levenshtein_distance(input):
         settings.write(input['delete-cost'] + '\n')
         settings.write(input['insert-cost'] + '\n')
         
-    os.system('./checker/levenshtein_distance')
+    os.system('checker\levenshtein_distance.exe')
     
