@@ -1,7 +1,20 @@
 console.log('main js is running');
 
+function readFileAsText(file) {
+    return new Promise(function(resolve, reject) {
+        var reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function(event) {
+            resolve(event.target.result);
+        };
+        reader.onerror = function(error) {
+            reject(error);
+        };
+    });
+}
+
 $(document).ready(function() {
-    $('#check').click(function() {
+    $('#check').click(async function() {
         var textareaVal1 = $('#textarea-1').val();
         var textareaVal2 = $('#textarea-2').val();
 
@@ -29,18 +42,32 @@ $(document).ready(function() {
                     if (res) { 
                         $('#textarea-1').val('');
                         $('#textarea-2').val('');
+                        $('#fileInput1')[0].value = '';
+                        $('#fileInput2')[0].value = '';
                         $('#fileLabel1')[0].textContent = 'No file selected';
                         $('#fileLabel2')[0].textContent = 'No file selected';
-                        // var text1, text2;
-                        // var post_data = {
-                        //     "text1": 
-                        // }
+                        
+                        var text1 = '', text2 = '';
+
+                        if (fileInput1 != "empty") {
+                            text1 = await readFileAsText(fileInput1);
+                        } else {
+                            text1 = textareaVal1;
+                        }
+                        if (fileInput2 != "empty") {
+                            text2 = await readFileAsText(fileInput2);
+                        } else {
+                            text2 = textareaVal2;
+                        }
+                        console.log(text1);
+                        console.log(text2);
 
                         $.ajax({
                             url: '/upload',
                             type: 'POST',
                             contentType: 'application/json',
-                            data: JSON.stringify({'textarea-1': textareaVal1, 'textarea-2': textareaVal2, 'file-input-1': fileInput1, 'file-input-2': fileInput2}),
+                            data: JSON.stringify({'text1': text1, 'text2' : text2}),
+                            // data: JSON.stringify({'textarea-1': textareaVal1, 'textarea-2': textareaVal2, 'file-input-1': fileInput1, 'file-input-2': fileInput2}),
                             success: function(response) {
                                 console.log('Данные успешно отправлены на сервер:', response);
                             },

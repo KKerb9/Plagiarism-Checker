@@ -32,9 +32,9 @@ def upload():
 #     input_file = ''
 #     output_file = ''
 #     os.system(f'checker/checker_executable.o < {input_file} > {output_file}')
-    calculate_levenshtein_distance(request.get_json())
 
-    return jsonify({'result': 'aboba'})
+    calculate_levenshtein_distance(request.get_json())
+    return jsonify({'result': 'aboba', 'text1': get_data['text1'], 'text2': get_data['text2']})
 
 
 @app.route('/results', methods=['GET'])
