@@ -33,6 +33,7 @@ def upload():
 #     output_file = ''
 #     os.system(f'checker/checker_executable.o < {input_file} > {output_file}')
 
+    # print(request.get_json())
     calculate_levenshtein_distance(request.get_json())
     return jsonify({'result': 'aboba', 'text1': get_data['text1'], 'text2': get_data['text2']})
 
@@ -69,5 +70,5 @@ if __name__ == "__main__":
     app.CURR_SESSION_CNT = 0
     app.CURR_QUERIES_CNT = 0
     app.permanent_session_lifetime = timedelta(days=1)
-    os.system('g++ -std=c++17 -O2 checker/levenshtein_distance.cpp -o checker/levenshtein_distance')
-    app.run(debug=True)
+    os.system('g++ -std=c++17 -O2 checker/levenshtein_distance.cpp -o checker/levenshtein_distance -l sqlite3')
+    app.run(host='0.0.0.0', port=5000, debug=True)
